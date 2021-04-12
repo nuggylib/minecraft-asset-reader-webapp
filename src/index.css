@@ -1,13 +1,17 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* see https://stackoverflow.com/questions/47607602/how-to-add-a-tailwind-css-rule-to-css-checker (the second answer - NOT the first) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  body {
+    @apply flex;
+    @apply flex-col;
+    @apply flex-1;
+    @apply bg-purple-900;
+  }
+
+  h1 {
+      @apply text-4xl;
+  }
 }
