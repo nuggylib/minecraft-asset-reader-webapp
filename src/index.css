@@ -4,14 +4,17 @@
 @tailwind utilities;
 
 @layer base {
+
   body {
-    @apply flex;
-    @apply flex-col;
-    @apply flex-1;
-    @apply bg-purple-900;
+    @apply bg-dirt-pattern;
+  }
+
+  header {
+    
   }
 
   h1 {
       @apply text-4xl;
   }
+
 }

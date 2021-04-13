@@ -15,9 +15,21 @@ export const ConfigContentMap = (props: {
         // TODO: Use axios to get the data from the back end
     })
 
+    const namespaces = Object.keys(props.rawData!)
+    const rawBlockNames = Object.keys(props.rawData![namespaces[0]].model.block)
+
     return(
-        <body>
-            <h1>Test</h1>
-        </body>
+        <div className="container">
+            <header 
+                style={{
+                    paddingTop: `2rem`
+                }}
+            >
+                <h1>Minecraft Asset Reader</h1>
+            </header>
+            <div>
+                
+            </div>
+        </div>
     )
 }
