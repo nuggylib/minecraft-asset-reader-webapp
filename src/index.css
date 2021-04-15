@@ -6,7 +6,7 @@
 @layer base {
 
   body {
-    @apply bg-dirt-pattern;
+    @apply bg-stone-pattern;
   }
 
   header {
@@ -15,6 +15,15 @@
 
   h1 {
       @apply text-4xl;
+  }
+
+  .namespace-button {
+    @apply p-2;
+    @apply bg-blue-600;
+    @apply text-white;
+    @apply text-center;
+    @apply rounded-lg;
+    @apply hover:bg-blue-900;
   }
 
 }

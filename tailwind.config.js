@@ -7,7 +7,8 @@ module.exports = {
     },
     extend: {
       backgroundImage: theme => ({
-        'dirt-pattern': "url('./img/dirt.jpg')"
+        'dirt-pattern': "url('./img/dirt.jpg')",
+        'stone-pattern': "url('./img/stone.jpg')"
       })
     },
   },
