@@ -36,10 +36,10 @@ export const BlockDataConfig = (props: {
                     as the texture to use for all sides).
                 </p>
             </div>
-            <div className="m-4 grid grid-cols-4 gap-6">
+            <div className="block-grid">
                 {blockRecords.map(record => {
                     return (
-                        <div key={record.block} className="bg-white rounded text-center">
+                        <div key={record.block} className="block-record">
                             <h3>{record.block}</h3>
                             <br/>
                             <div className="space-x-4">
@@ -64,13 +64,13 @@ export const BlockDataConfig = (props: {
                 })}
             </div>
             <div className="m-4 grid grid-cols-3 gap-6 text-center">
-                <button onClick={prevPageHandler}>
+                <button onClick={prevPageHandler} className="pagination-button">
                     Prev
                 </button>
                 <div>
                     Page {page} out of {pageCount}
                 </div>
-                <button onClick={nextPageHandler}>
+                <button onClick={nextPageHandler} className="pagination-button">
                     Next
                 </button>
             </div>

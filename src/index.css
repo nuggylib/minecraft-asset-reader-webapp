@@ -17,6 +17,24 @@
       @apply text-4xl;
   }
 
+  .modal {
+    
+  }
+
+  .block-grid {
+    @apply m-4;
+    @apply grid;
+    @apply grid-cols-4;
+    @apply gap-6;
+  }
+
+  .block-record {
+    @apply bg-white;
+    @apply rounded;
+    @apply text-center;
+    @apply hover:bg-green-300;
+  }
+
   .namespace-button {
     @apply w-auto;
     @apply p-2;
@@ -25,6 +43,18 @@
     @apply text-center;
     @apply rounded-lg;
     @apply hover:bg-blue-900;
+    @apply focus:outline-none;
+  }
+
+  .pagination-button {
+    @apply p-2;
+    @apply bg-blue-600;
+    @apply text-white;
+    @apply rounded;
+    @apply text-center;
+    @apply rounded-lg;
+    @apply hover:bg-blue-900;
+    @apply focus:outline-none;
   }
 
 }
