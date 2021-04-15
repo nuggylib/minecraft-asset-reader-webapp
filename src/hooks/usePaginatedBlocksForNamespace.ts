@@ -12,13 +12,12 @@ export const usePaginatedBlocksForNamespace = (props: {
     }[])
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/raw-data/blocks?page=${props.page}&namespace=${props.namespace}`)
+        axios.get(`http://localhost:3000/raw-data/blocks?page=${props.page}&namespace=${props.namespace}&limit=12`)
             .then(res => {
                 const blocks = res.data.items
-                console.log(`BLOCKS: `, blocks)
                 setBlockRecords(blocks)
             })
-    }, [props.page])
+    }, [props.namespace, props.page])
 
     return blockRecords
 }

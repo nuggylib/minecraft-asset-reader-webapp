@@ -18,6 +18,7 @@
   }
 
   .namespace-button {
+    @apply w-auto;
     @apply p-2;
     @apply bg-blue-600;
     @apply text-white;

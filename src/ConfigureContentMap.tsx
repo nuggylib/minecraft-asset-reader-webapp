@@ -12,10 +12,8 @@ export const ConfigContentMap = (props: {
     const namespaces = useNamespaces()
     const [selectedNamespace, setSelectedNamespace] = useState(null as unknown as string)
 
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const inputElement = e.target as HTMLElement       // Cast to input type since `value` won't exist on the type without it
-        console.log(`EVENT: `, inputElement.innerText)
         setSelectedNamespace(inputElement.innerText)
     }
 
@@ -41,12 +39,11 @@ export const ConfigContentMap = (props: {
                 {(namespaces.length > 0) ? 
                     <ul>
                         {namespaces.map(namespace => (
-                            <a onClick={handleClick} key={namespace}>
+                            <button onClick={handleClick} key={namespace}>
                                 <div className="namespace-button">
                                     <h3>{namespace}</h3>
                                 </div>
-                            </a>
-                            
+                            </button>
                         ))}
                     </ul>
                 :
@@ -54,7 +51,6 @@ export const ConfigContentMap = (props: {
                 }
             </div>
             <div>
-                <h2>Selected namespace: {!!selectedNamespace ? selectedNamespace : `<none>`}</h2>
                 {!!selectedNamespace ? 
                     <div>
                             <BlockDataConfig 
