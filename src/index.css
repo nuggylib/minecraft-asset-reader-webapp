@@ -34,6 +34,9 @@
     @apply bg-white;
     @apply w-4/5;
   }
+  .modal-title {
+    @apply text-center;
+  }
 
   .block-grid {
     @apply m-4;

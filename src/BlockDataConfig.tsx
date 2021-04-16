@@ -1,15 +1,14 @@
 import React, { useReducer, useState } from "react"
 import { useBlockPageCountForNamespace } from "./hooks/useBlockPageCountForNamespace"
 import { usePaginatedBlocksForNamespace } from "./hooks/usePaginatedBlocksForNamespace"
-import { BlockModelData } from "./minecraft/types"
-import { Modal } from "./Modal"
+import { BlockModal } from "./BlockModal"
 
-const reducer = (prevState: any, nextState: any) => {
-    switch (nextState.type) {
+const reducer = (prevState: any, action: any) => {
+    switch (action.type) {
         case 'open_modal': {
             return {
                 showModal: true,
-                modalData: nextState.payload.modalData
+                modalData: action.payload.modalData
             }
         }
         case 'close_modal': {
@@ -57,7 +56,8 @@ export const BlockDataConfig = (props: {
     return (
         <>
             {!!modalState?.showModal ? 
-                <Modal 
+                <BlockModal 
+                    namespace={props.namespace}
                     blockModelData={modalState?.modalData}
                     dimiss={dismissModal}
                 />
