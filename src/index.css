@@ -14,11 +14,25 @@
   }
 
   h1 {
-      @apply text-4xl;
+    @apply text-4xl;
+  }
+
+  .modal-overlay {
+    @apply absolute;
+    @apply top-0;
+    @apply left-0;
+    @apply w-full;
+    @apply h-full;
+    @apply z-10;
+    @apply bg-black;
+    @apply bg-opacity-40;
   }
 
   .modal {
-    
+    @apply absolute;
+    @apply z-10;
+    @apply bg-white;
+    @apply w-4/5;
   }
 
   .block-grid {
@@ -33,6 +47,14 @@
     @apply rounded;
     @apply text-center;
     @apply hover:bg-green-300;
+  }
+
+  .namespace-button-grid {
+    @apply m-4;
+    @apply p-2;
+    @apply grid;
+    @apply grid-cols-3;
+    @apply gap-4;
   }
 
   .namespace-button {
