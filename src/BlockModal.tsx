@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useScaledBlockImages } from './hooks/useScaledBlockImages'
 import { BlockModelData } from './minecraft/types'
+import axios from "axios"
+import { ConfiguredBlock } from './types'
 
 export const BlockModal = (props: {
     namespace: string
@@ -10,6 +12,11 @@ export const BlockModal = (props: {
     }
     dimiss: () => void
 }) => {
+
+    const [top, setTop] = useState(null as unknown as string)
+    const [left, setLeft] = useState(null as unknown as string)
+    const [right, setRight] = useState(null as unknown as string)
+    
     const blockTextures = useScaledBlockImages({
         namespace: props.namespace,
         block: props.blockModelData.block,
@@ -23,6 +30,13 @@ export const BlockModal = (props: {
             </option>
         ))
     }
+
+    useEffect(() => {
+        axios.get(`http://localhost:3000/content-map/block`)
+            .then(res => {
+                console.log(`BLOCK RESPONSE: `, res)
+            })
+    }, [top, left, right])
 
     return (
         <>
