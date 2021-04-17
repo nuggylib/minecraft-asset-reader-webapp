@@ -4,6 +4,8 @@ import { BlockModelData } from './minecraft/types'
 import axios from "axios"
 import { ConfiguredBlock } from './types'
 
+const NONE = `none`
+
 export const BlockModal = (props: {
     namespace: string
     blockModelData: {
@@ -13,9 +15,9 @@ export const BlockModal = (props: {
     dimiss: () => void
 }) => {
 
-    const [top, setTop] = useState(null as unknown as string)
-    const [left, setLeft] = useState(null as unknown as string)
-    const [right, setRight] = useState(null as unknown as string)
+    const [top, setTop] = useState(NONE)
+    const [left, setLeft] = useState(NONE)
+    const [right, setRight] = useState(NONE)
     
     const blockTextures = useScaledBlockImages({
         namespace: props.namespace,
@@ -25,7 +27,7 @@ export const BlockModal = (props: {
 
     const renderDropdownOptions = () => {
         return Object.keys(blockTextures).map(textureName => (
-            <option key={`${textureName}_opt`} value={textureName}>
+            <option key={`${textureName}_opt`} value={`${textureName}`}>
                 {textureName}
             </option>
         ))
@@ -37,6 +39,10 @@ export const BlockModal = (props: {
                 console.log(`BLOCK RESPONSE: `, res)
             })
     }, [top, left, right])
+
+    const setTopHandler = (e: any) => setTop(e.target.value)
+    const setRightHandler = (e: any) => setRight(e.target.value)
+    const setLeftHandler = (e: any) => setLeft(e.target.value)
 
     return (
         <>
@@ -71,23 +77,24 @@ export const BlockModal = (props: {
                     </tbody>
                 </table>
                 <div className="text-center">
+                    <input className="p-1 m-2 bg-gray-300 rounded border-2 border-gray-500 focus:outline-none" type="text" placeholder="Display Name"/>
                     <div className="modal-dropdown-row">
                         <h3>top</h3>
-                        <select>
+                        <select value={top} onChange={setTopHandler}>
                             <option value="none">none</option>
                             {renderDropdownOptions()}
                         </select>
                     </div>
                     <div className="modal-dropdown-row">
                         <h3>sideL</h3>
-                        <select>
+                        <select value={left} onChange={setLeftHandler}>
                             <option value="none">none</option>
                             {renderDropdownOptions()}
                         </select>
                     </div>
                     <div className="modal-dropdown-row">
                         <h3>sideR</h3>
-                        <select>
+                        <select value={right} onChange={setRightHandler}>
                             <option value="none">none</option>
                             {renderDropdownOptions()}
                         </select>
