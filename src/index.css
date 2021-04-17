@@ -38,6 +38,13 @@
   .modal-title {
     @apply text-center;
   }
+  .modal-input {
+    @apply p-1;
+    @apply m-2;
+    @apply bg-gray-300;
+    @apply rounded border-2 border-gray-500;
+    @apply focus:outline-none;
+  }
   .modal-dismiss-button {
     @apply w-auto;
     @apply p-2;
@@ -55,6 +62,17 @@
     @apply p-2;
     @apply bg-blue-600;
     @apply hover:bg-blue-900;
+    @apply text-white;
+    @apply rounded;
+    @apply text-center;
+    @apply focus:outline-none;
+    @apply w-1/4;
+    @apply float-right;
+  }
+  .modal-save-button-disabled {
+    @apply w-auto;
+    @apply p-2;
+    @apply bg-blue-300;
     @apply text-white;
     @apply rounded;
     @apply text-center;
