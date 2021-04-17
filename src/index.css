@@ -29,6 +29,7 @@
   }
 
   .modal {
+    @apply p-4;
     @apply absolute;
     @apply z-10;
     @apply bg-white;
@@ -36,6 +37,17 @@
   }
   .modal-title {
     @apply text-center;
+  }
+
+  .modal-dropdown-row {
+    @apply space-x-4;
+
+  }
+  .modal-dropdown-row > h3 {
+    @apply inline-block;
+  }
+  .modal-dropdown-row > select {
+    @apply w-24;
   }
 
   .block-grid {

@@ -52,11 +52,9 @@ export const ConfigContentMap = (props: {
             </div>
             <div>
                 {!!selectedNamespace ? 
-                    <div>
-                            <BlockDataConfig 
-                                namespace={selectedNamespace}
-                            />
-                    </div>
+                    <BlockDataConfig 
+                        namespace={selectedNamespace}
+                    />
                 :
                     null
                 }
