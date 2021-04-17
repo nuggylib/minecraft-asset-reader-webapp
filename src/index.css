@@ -38,6 +38,30 @@
   .modal-title {
     @apply text-center;
   }
+  .modal-dismiss-button {
+    @apply w-auto;
+    @apply p-2;
+    @apply bg-gray-500;
+    @apply hover:bg-gray-400;
+    @apply text-white;
+    @apply rounded;
+    @apply text-center;
+    @apply focus:outline-none;
+    @apply w-1/4;
+    @apply float-left;
+  }
+  .modal-save-button {
+    @apply w-auto;
+    @apply p-2;
+    @apply bg-blue-600;
+    @apply hover:bg-blue-900;
+    @apply text-white;
+    @apply rounded;
+    @apply text-center;
+    @apply focus:outline-none;
+    @apply w-1/4;
+    @apply float-right;
+  }
 
   .modal-dropdown-row {
     @apply space-x-4;

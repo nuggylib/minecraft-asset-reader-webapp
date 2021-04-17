@@ -79,8 +79,11 @@ export const BlockModal = (props: {
                         </select>
                     </div>
                 </div>
-                <button onClick={props.dimiss}>
+                <button className="modal-dismiss-button" onClick={props.dimiss}>
                     Dismiss
+                </button>
+                <button className="modal-save-button" onClick={() => console.log(`SAVE!`)}>
+                    Save
                 </button>
             </div>
         </>
