@@ -2,7 +2,9 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { ContentMap } from "../types"
 
-export const useContentMap = () => {
+export const useContentMap = (args: {
+    watch: any
+}) => {
     const [contentMap, setContentMap] = useState({} as ContentMap)
 
     useEffect(() => {
@@ -11,7 +13,7 @@ export const useContentMap = () => {
                 const contentMap = res.data
                 setContentMap(contentMap)
             })
-    }, [])
+    }, [args.watch])
 
     return contentMap
 }

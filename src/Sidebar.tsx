@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react"
+import axios from "axios"
 import { useContentMap } from "./hooks/useContentMap"
 
 export const Sidebar = () => {
     const [sideBarIsOpen, setSidebarIsOpen] = useState(false)
-    const cachedContentMap = useContentMap()
-
-    console.log(`CACHED CONTENT MAP: `, cachedContentMap)
+    // TODO: Fix this so that the user doesn't have to close and reopen the menu to see an up-to-date reflection of the stored data
+    const cachedContentMap = useContentMap({
+        watch: sideBarIsOpen
+    })
 
     const namespaces = Object.keys(cachedContentMap)
-    
-    useEffect(() => {
 
-    }, [sideBarIsOpen])
-
-    console.log(`OPEN: `, sideBarIsOpen)
+    const exportHandler = () => {
+        axios.post(`http://localhost:3000/content-map/export`)
+            .then(res => {
+                console.log(`EXPORT RESPONSE: `, res)
+            })
+    }
     
     return (
         <aside className={`sidebar` + (sideBarIsOpen ? `transform -translate-x-64` : `` )}>
@@ -28,7 +31,7 @@ export const Sidebar = () => {
                     <h3>Namespaces</h3>
                     {namespaces.map(namespace => {
                         return (
-                            <ul>
+                            <ul key={`${namespace}_data`}>
                                 <li>
                                     <div className="sidebar-namespace-label">{namespace}</div>
                                 </li>
@@ -39,6 +42,7 @@ export const Sidebar = () => {
                             </ul>
                         )
                     })}
+                    <button className="bottom-0" onClick={exportHandler}>Export</button>
                 </>
             }
             </>
