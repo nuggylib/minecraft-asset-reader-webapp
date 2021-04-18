@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { ContentMap } from "../types"
 
-export const useNamespaces = () => {
-    const [namespaces, setNamespaces] = useState([] as string[])
+export const useContentMap = () => {
+    const [contentMap, setContentMap] = useState({} as ContentMap)
 
     useEffect(() => {
         axios.get(`http://localhost:3000/content-map`)
             .then(res => {
-                const namespaces = res.data.items
-                setNamespaces(namespaces)
+                const contentMap = res.data
+                setContentMap(contentMap)
             })
     }, [])
 
-    return namespaces
+    return contentMap
 }

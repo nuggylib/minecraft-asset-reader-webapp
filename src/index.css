@@ -17,6 +17,55 @@
     @apply text-4xl;
   }
 
+  .sidebar {
+    @apply relative;
+    @apply flex;
+    @apply h-full;
+    @apply bg-gray-800;
+    @apply flex-shrink-0;
+    @apply w-64;
+    @apply flex;
+    @apply flex-col;
+    @apply border-r;
+    @apply transition-transform;
+    @apply duration-300;
+    @apply z-10;
+    @apply overflow-x-hidden;
+  }
+  .sidebar h1 {
+    @apply m-8;
+    @apply text-center;
+    @apply text-base;
+    @apply text-white;
+  }
+  .sidebar h3 {
+    @apply m-8;
+    @apply text-center;
+    @apply text-sm;
+    @apply text-white;
+  }
+  .sidebar-namespace-label {
+    @apply ml-4;
+    @apply text-base;
+    @apply text-white;
+  }
+  .sidebar-nested-field-label {
+    @apply ml-8;
+    @apply float-left;
+    @apply text-white;
+  }
+  .sidebar-nested-field-value {
+    @apply ml-2;
+    @apply float-left;
+    @apply text-green-400;
+  }
+  .sidebar .toggle-button {
+    @apply absolute;
+    @apply top-0;
+    @apply right-0;
+    @apply text-white;
+  }
+
   .modal-overlay {
     @apply absolute;
     @apply top-0;
@@ -103,7 +152,7 @@
     @apply bg-white;
     @apply rounded;
     @apply text-center;
-    @apply hover:bg-green-300;
+    @apply transform hover:-translate-y-1 hover:scale-110 ease-in-out duration-100;
   }
 
   .namespace-button-grid {
