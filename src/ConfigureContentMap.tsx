@@ -19,12 +19,19 @@ export const ConfigContentMap = (props: {
         setSelectedNamespace(inputElement.innerText)
     }
 
+    const toggleSidebar = () => {
+        console.log(`TOGGLE TO: `, !sideBarIsOpen)
+        setSidebarIsOpen(!sideBarIsOpen)
+    }
+
     return(
         <div className="flex overflow-x-hidden h-screen">
-            <Sidebar />
-
+            <Sidebar isOpen={sideBarIsOpen} toggleSidebarHandler={toggleSidebar}/>
             <div className="container flex-1 mx-auto">
                 <header>
+                    <svg className="toggle-button h-6 w-6" onClick={toggleSidebar} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
                     <h1>Minecraft Asset Reader</h1>
                 </header>
                 <main className="p-4">

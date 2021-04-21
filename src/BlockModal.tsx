@@ -2,7 +2,6 @@ import React, { useEffect, useReducer, useState } from 'react'
 import { useScaledBlockImages } from './hooks/useScaledBlockImages'
 import { BlockModelData } from './minecraft/types'
 import axios from "axios"
-import { ConfiguredBlock } from './types'
 
 const NONE = `none`
 
