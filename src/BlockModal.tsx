@@ -85,7 +85,7 @@ export const BlockModal = (props: {
     const renderDropdownOptions = () => {
         return Object.keys(blockTextures).map(textureName => (
             <option key={`${textureName}_opt`} value={`${textureName}`}>
-                {textureName}
+                {textureName.replace(`blocks/`, ``)}
             </option>
         ))
     }
@@ -124,11 +124,10 @@ export const BlockModal = (props: {
             blocks: {
                 [props.blockModelData.block]: {
                     title: modalState.title,
-                    // TODO: Update the backend so that we don't need to add "blocks" here - should be done server-side (just reduces room for error)
                     iconData: {
-                        top: `blocks/${modalState.top}`,
-                        sideL: `blocks/${modalState.left}`,
-                        sideR: `blocks/${modalState.right}`,
+                        top: `${modalState.top}`,
+                        sideL: `${modalState.left}`,
+                        sideR: `${modalState.right}`,
                     }
                 }
             }
@@ -161,7 +160,7 @@ export const BlockModal = (props: {
                         {Object.keys(blockTextures).map(textureName => (
                             <tr key={`${textureName}_scaled_row`}>
                                 <td>
-                                    "{textureName}"
+                                    {textureName.replace(`blocks/`, ``)}
                                 </td>
                                 <td>
                                     <img className="m-4 mx-auto" src={blockTextures[textureName]} alt={textureName}/>
