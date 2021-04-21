@@ -15,7 +15,7 @@
 ### Getting sample data to test with
 As mentioned above, a good test could be the assets for Minecraft 1.12.2. Technically, any version of minecraft that has an `assets` directory in the root will work, but we've been using 1.12.2 since we have a mod we are working on that uses that version.
 
-**Due to potential copyright issues, I don't think I can provide any Minecraft assets in this repository.** With that said, _if you have a Minecraft account_ you can test this without issue.
+**Due to potential copyright issues, I don't think I can provide any "official" Minecraft assets in this repository.** With that said, _if you have a Minecraft account_ you can test this without issue.
 1. Download the Minecraft installer (if you haven't already)
 2. Select the version of Minecraft you want to install
 3. Launch the game once so all the game files are downloaded (it only needs to load into the main screen)
