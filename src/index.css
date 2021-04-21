@@ -10,7 +10,10 @@
   }
 
   header {
-    
+    @apply flex items-center p-4;
+  }
+  header button {
+    @apply p-1 mr-4;
   }
 
   h1 {
@@ -18,7 +21,7 @@
   }
 
   .sidebar {
-    @apply relative;
+    @apply fixed;
     @apply flex;
     @apply h-full;
     @apply bg-gray-800;

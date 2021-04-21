@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useContentMap } from "./hooks/useContentMap"
 
-export const Sidebar = () => {
-    const [sideBarIsOpen, setSidebarIsOpen] = useState(false)
+export const Sidebar = (props: {
+    isOpen: boolean
+    toggleSidebarHandler: () => void
+}) => {
     // TODO: Fix this so that the user doesn't have to close and reopen the menu to see an up-to-date reflection of the stored data
     const cachedContentMap = useContentMap({
-        watch: sideBarIsOpen
+        watch: props.isOpen
     })
 
     const namespaces = Object.keys(cachedContentMap)
@@ -19,13 +21,15 @@ export const Sidebar = () => {
     }
     
     return (
-        <aside className={`sidebar` + (sideBarIsOpen ? `transform -translate-x-64` : `` )}>
+        <aside className={`sidebar` + (!props.isOpen ? `transform -translate-x-64` : `` )}>
             <>
-            <button className="toggle-button" onClick={() => setSidebarIsOpen(!sideBarIsOpen)}>{`<<`}</button>
-            {sideBarIsOpen ? 
+            {!props.isOpen ? 
                 null
             :
                 <>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="toggle-button h-6 w-6" onClick={props.toggleSidebarHandler} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                    </svg>
                     {/* TODO: Figure out why this text still persists when overflowing - just tired of dealing with UI stuff atm */}
                     <h1>Session details</h1>
                     <h3>Namespaces</h3>
