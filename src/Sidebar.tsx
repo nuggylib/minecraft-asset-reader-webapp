@@ -5,6 +5,7 @@ import { useContentMap } from "./hooks/useContentMap"
 export const Sidebar = (props: {
     isOpen: boolean
     toggleSidebarHandler: () => void
+    openExportModalHandler: () => void
 }) => {
     // TODO: Fix this so that the user doesn't have to close and reopen the menu to see an up-to-date reflection of the stored data
     const cachedContentMap = useContentMap({
@@ -46,7 +47,7 @@ export const Sidebar = (props: {
                             </ul>
                         )
                     })}
-                    <button className="bottom-0" onClick={exportHandler}>Export</button>
+                    <button className="open-export-modal-button" onClick={() => props.openExportModalHandler()}>Export</button>
                 </>
             }
             </>
