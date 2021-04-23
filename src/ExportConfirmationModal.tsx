@@ -26,14 +26,12 @@ export const ExportConfirmationModal = (props: {
      * @param e 
      */
     const scaleSizeInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value)
         const parsedText = e.target.value.replace(` `, `,`)
         const lastChar = parsedText.slice(-1)
         if (lastChar.match(/[a-z]/i)) return    // Exit early if a letter character was provided
         const storedLastChar = scaleInput.slice(-1)
         const values = splitTextByCommas(parsedText)
         const isValidInput = (values.filter(val => {
-            console.log(parseInt(val))
             let isValid = !isNaN(parseInt(val))
             if (val === ``) {
                 isValid = true
