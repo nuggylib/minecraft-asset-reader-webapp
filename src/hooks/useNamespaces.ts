@@ -8,7 +8,6 @@ export const useNamespaces = () => {
         axios.get(`http://localhost:3000/raw-data/namespaces`)
             .then(res => {
                 const namespaces = res.data.items
-                console.log(`NAMESPACES: `, namespaces)
                 setNamespaces(namespaces)
             })
     }, [])

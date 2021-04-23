@@ -11,9 +11,9 @@ export const useScaledBlockImages = (props: {
     })
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/raw-data/blocks/scaled-images?&namespace=${props.namespace}&block=${props.block}&scale=${props.scale}`)
+        axios.get(`http://localhost:3000/raw-data/blocks?&namespace=${props.namespace}&block=${props.block}&scaleImage=${props.scale}`)
             .then(res => {
-                setScaledTextures(res.data)
+                setScaledTextures(res.data.scaledTextures)
             })
     }, [])
 
