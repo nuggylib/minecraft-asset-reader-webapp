@@ -5,6 +5,7 @@ import {
 import { useNamespaces } from "./hooks/useNamespaces"
 import { BlockDataConfig } from "./BlockDataConfig"
 import { Sidebar } from "./Sidebar"
+import { ExportConfirmationModal } from "./ExportConfirmationModal"
 
 export const ConfigContentMap = (props: {
     namespace?: string
@@ -12,6 +13,7 @@ export const ConfigContentMap = (props: {
 }) => {
     const namespaces = useNamespaces()
     const [selectedNamespace, setSelectedNamespace] = useState(null as unknown as string)
+    const [showExportModal, setShowExportModal] = useState(false)
     const [sideBarIsOpen, setSidebarIsOpen] = useState(false)
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -20,13 +22,13 @@ export const ConfigContentMap = (props: {
     }
 
     const toggleSidebar = () => {
-        console.log(`TOGGLE TO: `, !sideBarIsOpen)
         setSidebarIsOpen(!sideBarIsOpen)
     }
 
     return(
         <div className="flex overflow-x-hidden h-screen">
-            <Sidebar isOpen={sideBarIsOpen} toggleSidebarHandler={toggleSidebar}/>
+            <Sidebar isOpen={sideBarIsOpen} toggleSidebarHandler={toggleSidebar} openExportModalHandler={() => setShowExportModal(true)}/>
+            {!!showExportModal ? <ExportConfirmationModal cancelHandler={() => setShowExportModal(false)}/> : null}
             <div className="container flex-1 mx-auto">
                 <header>
                     <svg className="toggle-button h-6 w-6" onClick={toggleSidebar} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
