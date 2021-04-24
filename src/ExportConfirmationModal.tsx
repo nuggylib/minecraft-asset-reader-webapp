@@ -1,3 +1,4 @@
+import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useContentMap } from "./hooks/useContentMap"
 
@@ -5,12 +6,25 @@ export const ExportConfirmationModal = (props: {
     cancelHandler: () => void
 }) => {
     const [blockScaleSizes, setBlockScaleSizes] = useState([1])
+    const [writePath, setWritePath] = useState(``)
     const [scaleInput, setScaleInput] = useState(``)
 
     // TODO: Use this for a content map review portion of the modal
     // const contentMap = useContentMap({
     //     watch: null
     // })
+
+    const submitHandler = () => {
+        // TODO: Start a loading spinner
+        axios.post(`http://localhost:3000/site-data/export`, {
+            writePath,
+            blockIconScaleSizes: blockScaleSizes,
+        }).then(res => {
+            // TODO: stop the loading spinner
+            // TODO: Add some conditional stuff here - e.g., if something bad happens on the backend, tell the user about it
+            props.cancelHandler()
+        })
+    }
 
     const splitTextByCommas = (text: string) => {
         return text.split(`,`)
@@ -84,6 +98,7 @@ export const ExportConfirmationModal = (props: {
                             className="export-modal-input" 
                             type="input" 
                             placeholder="..."
+                            onChange={e => setWritePath(e.target.value)}
                         />
                     </label>
                     <h3 className="export-modal-section-header">Block export settings</h3>
@@ -125,7 +140,7 @@ export const ExportConfirmationModal = (props: {
                     <div className="space-x-4">
                         <button className="export-modal-cancel-button" onClick={props.cancelHandler}>Cancel</button>
                         {/* TODO: Disable this button if any content type is missing scale sizes */}
-                        <input className="export-modal-save-button" type="submit" value="Submit"/>
+                        <button className="export-modal-save-button" onClick={e => submitHandler()}>Submit</button>
                     </div>
                     
                 </form>
