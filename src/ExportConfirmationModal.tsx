@@ -1,29 +1,40 @@
 import axios from "axios"
-import React, { useEffect, useState } from "react"
-import { useContentMap } from "./hooks/useContentMap"
+import React, { useState } from "react"
+import { EXPORT_LOCATION } from "./constants"
 
 export const ExportConfirmationModal = (props: {
     cancelHandler: () => void
 }) => {
     const [blockScaleSizes, setBlockScaleSizes] = useState([1])
+    const [exportLocation, setExportLocation] = useState(EXPORT_LOCATION.FILE_SYSTEM)
     const [writePath, setWritePath] = useState(``)
+    const [projectName, setProjectName] = useState(``)
+    const [authToken, setAuthToken] = useState(``)
     const [scaleInput, setScaleInput] = useState(``)
-
-    // TODO: Use this for a content map review portion of the modal
-    // const contentMap = useContentMap({
-    //     watch: null
-    // })
 
     const submitHandler = () => {
         // TODO: Start a loading spinner
-        axios.post(`http://localhost:3000/site-data/export`, {
-            writePath,
-            blockIconScaleSizes: blockScaleSizes,
-        }).then(res => {
-            // TODO: stop the loading spinner
-            // TODO: Add some conditional stuff here - e.g., if something bad happens on the backend, tell the user about it
-            props.cancelHandler()
-        })
+        switch (exportLocation) {
+            case EXPORT_LOCATION.FILE_SYSTEM: {
+                axios.post(`http://localhost:3000/site-data/export`, {
+                    writePath,
+                    blockIconScaleSizes: blockScaleSizes,
+                }).then(res => {
+                    props.cancelHandler()
+                })
+                break;
+            }
+            case EXPORT_LOCATION.SANITY: {
+                axios.post(`http://localhost:3000/site-data/export/sanity`, {
+                    blockIconScaleSizes: blockScaleSizes,
+                    projectName,
+                    authToken,
+                }).then(res => {
+                    props.cancelHandler()
+                })
+            }
+        }
+
     }
 
     const splitTextByCommas = (text: string) => {
@@ -83,6 +94,10 @@ export const ExportConfirmationModal = (props: {
         ])
     }
 
+    const exportLocationSelectHandler = (location: EXPORT_LOCATION) => {
+        setExportLocation(location)
+    }
+
     return (
         <>
             <div className="modal-overlay"/>
@@ -92,15 +107,53 @@ export const ExportConfirmationModal = (props: {
                     Review your content map and specify the export path before exporting
                 </p>
                 <form>
-                    <label>
-                        Export path:
-                        <input 
-                            className="export-modal-input" 
-                            type="input" 
-                            placeholder="..."
-                            onChange={e => setWritePath(e.target.value)}
-                        />
-                    </label>
+                    <ul className="flex flex-row justify-center">
+                        {Object.values(EXPORT_LOCATION).map(loc => {
+                            return (
+                                <li className="block mx-2">
+                                    <label className="flex flex-col">
+                                        <input className="mx-auto" type="radio" checked={exportLocation === loc} onClick={() => exportLocationSelectHandler(loc)}/>
+                                        <div className="text-center">
+                                            {loc}
+                                        </div>
+                                    </label>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                    {exportLocation === EXPORT_LOCATION.FILE_SYSTEM ? 
+                        <label>
+                            Export path:
+                            <input 
+                                className="export-modal-input" 
+                                type="input" 
+                                placeholder="..."
+                                onChange={e => setWritePath(e.target.value)}
+                            />
+                        </label>
+                    : null }
+                    {exportLocation === EXPORT_LOCATION.SANITY ? 
+                        <div className="flex flex-col">
+                            <label>
+                                Project Name:
+                                <input 
+                                    className="export-modal-input" 
+                                    type="input" 
+                                    placeholder="..."
+                                    onChange={e => setProjectName(e.target.value)}
+                                />
+                            </label>
+                            <label>
+                                Auth token:
+                                <input 
+                                    className="export-modal-input" 
+                                    type="input" 
+                                    placeholder="..."
+                                    onChange={e => setAuthToken(e.target.value)}
+                                />
+                            </label>
+                        </div>
+                    : null }
                     <h3 className="export-modal-section-header">Block export settings</h3>
                     <div>
                         <label>
