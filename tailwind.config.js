@@ -9,7 +9,11 @@ module.exports = {
       backgroundImage: theme => ({
         'dirt-pattern': "url('./img/dirt.jpg')",
         'stone-pattern': "url('./img/stone.jpg')"
-      })
+      }),
+      animation: {
+        bounce200: `bounce 1s infinite 200ms`,
+        bounce400: `bounce 1s infinite 400ms`
+      }
     },
   },
   variants: {
