@@ -82,7 +82,7 @@
 
   .modal {
     @apply p-4;
-    @apply absolute;
+    @apply relative;
     @apply z-10;
     @apply bg-white;
     @apply w-4/5;
@@ -144,8 +144,23 @@
     @apply w-24;
   }
 
+  .ellipses-dot {
+    @apply h-2.5 w-2.5;
+    @apply bg-current;
+    @apply rounded-full;
+  }
+  .animated-ellipses-row {
+    @apply flex absolute;
+    @apply top-1/2 left-1/2;
+  }
+
+  .export-modal-loading-overlay {
+    @apply absolute;
+    @apply bg-gray-500 bg-opacity-60;
+    @apply w-full h-full;
+    @apply rounded;
+  }
   .export-modal {
-    @apply p-4;
     @apply absolute;
     @apply z-10;
     @apply bg-white;
