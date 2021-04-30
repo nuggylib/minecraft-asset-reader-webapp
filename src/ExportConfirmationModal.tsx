@@ -12,7 +12,8 @@ export const ExportConfirmationModal = (props: {
     const [authToken, setAuthToken] = useState(``)
     const [scaleInput, setScaleInput] = useState(``)
 
-    const submitHandler = () => {
+    const submitHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault()
         // TODO: Start a loading spinner
         switch (exportLocation) {
             case EXPORT_LOCATION.FILE_SYSTEM: {
@@ -193,7 +194,7 @@ export const ExportConfirmationModal = (props: {
                     <div className="space-x-4">
                         <button className="export-modal-cancel-button" onClick={props.cancelHandler}>Cancel</button>
                         {/* TODO: Disable this button if any content type is missing scale sizes */}
-                        <button className="export-modal-save-button" onClick={e => submitHandler()}>Submit</button>
+                        <button className="export-modal-save-button" onClick={submitHandler}>Submit</button>
                     </div>
                     
                 </form>
