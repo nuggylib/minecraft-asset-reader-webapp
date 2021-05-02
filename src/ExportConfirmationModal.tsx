@@ -29,7 +29,7 @@ export const ExportConfirmationModal = (props: {
             writePath,
             blockIconScaleSizes: blockScaleSizes,
           })
-          .then((res) => {
+          .then(() => {
             setLoading(false) // TODO: May not even need this since we are about to dismiss the modal
             props.cancelHandler()
           })
@@ -42,7 +42,7 @@ export const ExportConfirmationModal = (props: {
             projectName,
             authToken,
           })
-          .then((res) => {
+          .then(() => {
             setLoading(false) // TODO: May not even need this since we are about to dismiss the modal
             props.cancelHandler()
           })
@@ -84,9 +84,7 @@ export const ExportConfirmationModal = (props: {
     }
   }
 
-  const addBlockScaleSizes = (
-    e: React.MouseEvent<SVGSVGElement, MouseEvent>
-  ) => {
+  const addBlockScaleSizes = () => {
     const sizes = scaleInput.split(`,`).map((str) => parseInt(str))
     // Used to prevent duplicates and automatically-sorts the list in ascending order (by value)
     const obj = {} as any

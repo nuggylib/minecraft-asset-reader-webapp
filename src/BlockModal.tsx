@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react"
+import React, { useEffect, useReducer } from "react"
 import { useScaledBlockImages } from "./hooks/useScaledBlockImages"
 import { BlockModelData } from "./minecraft/types"
 import axios from "axios"

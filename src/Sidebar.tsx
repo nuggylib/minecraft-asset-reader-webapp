@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react"
-import axios from "axios"
+import React from "react"
 import { useContentMap } from "./hooks/useContentMap"
 
 export const Sidebar = (props: {
@@ -13,12 +12,6 @@ export const Sidebar = (props: {
   })
 
   const namespaces = Object.keys(cachedContentMap)
-
-  const exportHandler = () => {
-    axios.post(`http://localhost:3000/content-map/export`).then((res) => {
-      console.log(`EXPORT RESPONSE: `, res)
-    })
-  }
 
   return (
     <aside

@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from "react"
-import { RawAssetData } from "./types"
+import React, { useState } from "react"
 import { useNamespaces } from "./hooks/useNamespaces"
 import { BlockDataConfig } from "./BlockDataConfig"
 import { Sidebar } from "./Sidebar"
 import { ExportConfirmationModal } from "./ExportConfirmationModal"
 
-export const ConfigContentMap = (props: {
-  namespace?: string
-  rawData?: RawAssetData
-}) => {
+export const ConfigContentMap = () => {
   const namespaces = useNamespaces()
   const [selectedNamespace, setSelectedNamespace] = useState(
     (null as unknown) as string

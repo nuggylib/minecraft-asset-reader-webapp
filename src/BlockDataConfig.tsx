@@ -96,7 +96,7 @@ export const BlockDataConfig = (props: { namespace: string }) => {
                 className="mx-auto"
                 type="radio"
                 checked={sortOrder === `ascending`}
-                onClick={(e) => sortOrderHandler(`ascending`)}
+                onClick={() => sortOrderHandler(`ascending`)}
               />
               ASC
             </label>
@@ -105,7 +105,7 @@ export const BlockDataConfig = (props: { namespace: string }) => {
                 className="mx-auto"
                 type="radio"
                 checked={sortOrder === `descending`}
-                onClick={(e) => sortOrderHandler(`descending`)}
+                onClick={() => sortOrderHandler(`descending`)}
               />
               DESC
             </label>
