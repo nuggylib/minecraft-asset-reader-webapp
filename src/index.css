@@ -20,6 +20,11 @@
     @apply text-4xl;
   }
 
+  .pagination-config {
+    @apply flex flex-row;
+    @apply justify-center;
+  }
+
   .sidebar {
     @apply fixed;
     @apply flex;

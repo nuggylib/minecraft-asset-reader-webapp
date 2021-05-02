@@ -24,6 +24,7 @@ export const BlockDataConfig = (props: {
     namespace: string
 }) => {
     const [page, setPage] = useState(1)
+    const [sortOrder, setSortOrder] = useState(`ascending`)
     const [modalState, dispatch] = useReducer(reducer, {
         showModal: false,
         modalData: null
@@ -34,7 +35,8 @@ export const BlockDataConfig = (props: {
     })
     const blockRecords = usePaginatedBlocksForNamespace({
         page,
-        namespace: props.namespace
+        namespace: props.namespace,
+        sortOrder: sortOrder as `ascending` | `descending`,
     })
 
     const nextPageHandler = () => {
@@ -51,6 +53,10 @@ export const BlockDataConfig = (props: {
 
     const dismissModal = () => {
         dispatch({ type: 'close_modal' })
+    }
+
+    const sortOrderHandler = (order: `ascending` | `descending`) => {
+        setSortOrder(order)
     }
 
     return (
@@ -72,6 +78,17 @@ export const BlockDataConfig = (props: {
                         texture for one, two, or all sides (e.g., to add a block defition that uses the same texture for all sides, simply set it
                         as the texture to use for all sides).
                     </p>
+                </div>
+                <div className="pagination-config">
+                        <label className="flex flex-col">
+                            <input className="mx-auto" type="radio" checked={sortOrder === `ascending`} onClick={e => sortOrderHandler(`ascending`)}/>
+                            ASC
+                        </label>
+                        <label className="ml-4 flex flex-col">
+                            <input className="mx-auto" type="radio" checked={sortOrder === `descending`} onClick={e => sortOrderHandler(`descending`)}/>
+                            DESC
+                        </label>
+                    
                 </div>
                 <div className="block-grid">
                     {blockRecords.map(record => {
