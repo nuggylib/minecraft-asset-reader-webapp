@@ -25,18 +25,23 @@ export const BlockDataConfig = (props: {
 }) => {
     const [page, setPage] = useState(1)
     const [sortOrder, setSortOrder] = useState(`ascending`)
+    const [searchText, setSearchText] = useState(``)
     const [modalState, dispatch] = useReducer(reducer, {
         showModal: false,
         modalData: null
     })
         
     const pageCount = useBlockPageCountForNamespace({
-        namespace: props.namespace
+        page,
+        namespace: props.namespace,
+        sortOrder: sortOrder as `ascending` | `descending`,
+        q: searchText
     })
     const blockRecords = usePaginatedBlocksForNamespace({
         page,
         namespace: props.namespace,
         sortOrder: sortOrder as `ascending` | `descending`,
+        q: searchText
     })
 
     const nextPageHandler = () => {
@@ -79,7 +84,9 @@ export const BlockDataConfig = (props: {
                         as the texture to use for all sides).
                     </p>
                 </div>
-                <div className="pagination-config">
+                <div className="flex flex-col">
+                    <input value={searchText} onChange={e => setSearchText(e.target.value)} className="w-1/2 m-4 p-2 mx-auto focus:outline-none rounded" placeholder="Search text"/>
+                    <div className="pagination-config">
                         <label className="flex flex-col">
                             <input className="mx-auto" type="radio" checked={sortOrder === `ascending`} onClick={e => sortOrderHandler(`ascending`)}/>
                             ASC
@@ -88,8 +95,9 @@ export const BlockDataConfig = (props: {
                             <input className="mx-auto" type="radio" checked={sortOrder === `descending`} onClick={e => sortOrderHandler(`descending`)}/>
                             DESC
                         </label>
-                    
+                    </div>
                 </div>
+                
                 <div className="block-grid">
                     {blockRecords.map(record => {
                         return (
